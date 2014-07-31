@@ -9,4 +9,4 @@ re-POOPS UR AUDIO & VIDEO FILES into your CURRENT directory.
 
 ## Usage
 
-	./av-pooper.sh "formats" infiles ["formats" infiles]
+	./av-pooper.sh "formats" infiles ["formats" infiles] ...

@@ -2,7 +2,7 @@
 # re-POOPS UR AUDIO & VIDEO FILES into your CURRENT directory
 # TODO: -y overwrite, check-for-dependencies
 
-# USAGE: $0 "formats" infiles ["formats" infiles]
+# USAGE: $0 "formats" infiles ["formats" infiles] ...
 
 # EXAMPLE: $0 "webm mp4" hotty.mov swimmy.mov "ogg mp3" hooters.wav loopers.wav
 # produces hotty.webm, hotty.mp4, swimmy.webm, swimmy.mp4, hooters.ogg, hooters.mp3, loopers.ogg, loopers.mp3
