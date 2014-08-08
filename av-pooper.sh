@@ -5,7 +5,7 @@
 # USAGE: $0 "formats" infiles ["formats" infiles] ...
 
 # EXAMPLE: $0 "webm mp4" hotty.mov swimmy.mov "ogg mp3" hooters.wav loopers.wav
-# produces hotty.webm, hotty.mp4, swimmy.webm, swimmy.mp4, hooters.ogg, hooters.mp3, loopers.ogg, loopers.mp3
+# → hotty.webm, hotty.mp4, swimmy.webm, swimmy.mp4, hooters.ogg, hooters.mp3, loopers.ogg, loopers.mp3
 
 # NOTE: requires {ffmpeg, libvpx, libvorbis, libtheora} for VIDEO & {vorbis-tools, lame, faac} for AUDIO
 # $ brew reinstall ffmpeg --with-libvpx --with-theora --with-libvorbis
@@ -57,7 +57,8 @@ for in in "$@"; do
 				# https://trac.ffmpeg.org/ticket/2115
 				# http://gpac.wp.mines-telecom.fr/mp4box/#cont_deli
 				# http://superuser.com/questions/438390/creatingmp4-videos-ready-forhttp-streaming
-				ffmpeg -i "$in" $ffmpeg_params -movflags faststart "$out"
+				# https://trac.ffmpeg.org/wiki/Encode/H.264#AppleQuicktime
+				ffmpeg -i "$in" $ffmpeg_params -movflags faststart -pix_fmt yuv420p "$out"
 				;;
 			# TESTING COLOR SPACE / PROFILE / MATRIX ??!?
 			mp4-bt709)
