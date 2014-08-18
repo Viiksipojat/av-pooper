@@ -35,7 +35,7 @@ for in in "$@"; do
 	[ ! -e "$in" ] && {
 		formats=$in
 		continue
-	} 
+	}
 
 	inext=${in##*.}
 	base=$(basename "$in" .$inext)
@@ -65,7 +65,10 @@ for in in "$@"; do
 				ffmpeg -i "$in" $ffmpeg_params -x264opts colorprim=bt709:transfer=bt709:colormatrix=smpte170m "$out"
 				;;
 			mp4-avconvert)
-				avconvert -v -prog $avconvert_params -s "$in" -o "$out" \
+				avconvert -v -prog $avconvert_params -s "$in" -o "$out"
+				;;
+			wav)
+				ffmpeg -i "$in" "$out"
 				;;
 			ogg)
 				oggenc $oggenc_params -o "$out" "$in"
@@ -79,7 +82,7 @@ for in in "$@"; do
 				;;
 			m4a-afconvert)
 				# BTW. afconvert also comes from osx developer tools.
-				afconvert -v $afconvert_params "$in" "$out" \
+				afconvert -v $afconvert_params "$in" "$out"
 				;;
 			*)
 				echo "don't know what to do with $outext"
