@@ -10,3 +10,14 @@ re-POOPS UR AUDIO & VIDEO FILES into your CURRENT directory.
 ## Usage
 
 	./av-pooper.sh "formats" infiles ["formats" infiles] ...
+
+### Example
+
+	./av-pooper.sh "webm mp4" hotty.mov swimmy.mov "ogg m4a" hooters.wav loopers.wav
+
+produces
+
+	hotty.webm	hotty.mp4
+	swimmy.webm	swimmy.mp4
+	hooters.ogg	hooters.m4a
+	loopers.ogg	loopers.m4a
