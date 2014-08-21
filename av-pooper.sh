@@ -12,10 +12,11 @@
 # $ brew install vorbis-tools lame faac
 
 # GLOBAL PARAMETERS
-BITRATE_VIDEO=800 # kbps
+BITRATE_VIDEO=4000 # kbps
 BITRATE_AUDIO=140 # kbps
 RESOLUTION_X=1280 # y is auto-scaled preserving aspect ratio
-X264Q=23 # default: 23, leave empty to use BITRATE_VIDEO
+X264Q=23 # default: 23 (lower better), leave empty to use BITRATE_VIDEO
+VPXQ=20 # default: 10 (lower better), BITRATE_VIDEO becomes MAXIMUM bitrate
 VORBISQ=5 # ~160 kbps
 FAACQ=120 # ~140 kbps
 
@@ -52,7 +53,7 @@ for in in "$@"; do
 				ffmpeg -i "$in" $ffmpeg_params "$out"
 				;;
 			webm)
-				ffmpeg -i "$in" $ffmpeg_params "$out"
+				ffmpeg -i "$in" $ffmpeg_params ${VPXQ:+-crf} $VPXQ "$out"
 				;;
 			mp4)
 				# https://trac.ffmpeg.org/ticket/2115
