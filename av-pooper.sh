@@ -14,7 +14,8 @@
 # GLOBAL PARAMETERS
 BITRATE_VIDEO=800 # kbps
 BITRATE_AUDIO=140 # kbps
-RESOLUTION_X=800 # 800x450 @ 16:9
+RESOLUTION_X=1280 # y is auto-scaled preserving aspect ratio
+X264Q=23 # default: 23, leave empty to use BITRATE_VIDEO
 VORBISQ=5 # ~160 kbps
 FAACQ=120 # ~140 kbps
 
@@ -58,7 +59,7 @@ for in in "$@"; do
 				# http://gpac.wp.mines-telecom.fr/mp4box/#cont_deli
 				# http://superuser.com/questions/438390/creatingmp4-videos-ready-forhttp-streaming
 				# https://trac.ffmpeg.org/wiki/Encode/H.264#AppleQuicktime
-				ffmpeg -i "$in" $ffmpeg_params -movflags faststart -pix_fmt yuv420p "$out"
+				ffmpeg -i "$in" $ffmpeg_params ${X264Q:+-crf} $X264Q -movflags faststart -pix_fmt yuv420p "$out"
 				;;
 			# TESTING COLOR SPACE / PROFILE / MATRIX ??!?
 			mp4-bt709)
