@@ -86,6 +86,11 @@ for in in "$@"; do
 				# BTW. afconvert also comes from osx developer tools.
 				afconvert -v $afconvert_params "$in" "$out"
 				;;
+			jpg)
+				# outputs the first frame of the viddy
+				# mainly useful for making poster images for the web vids
+				ffmpeg -i "$in" -vframes 1 "$out"
+				;;
 			*)
 				echo "don't know what to do with $outext"
 		esac
