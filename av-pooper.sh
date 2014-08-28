@@ -43,11 +43,12 @@ for in in "$@"; do
 	base=$(basename "$in" .$inext)
 	# dir=$(dirname $in)
 
-	for outext in $formats; do
+	for format in $formats; do
+		outext=${format%%-*}
 		out="$outdir/$base.$outext"
 		echo "******************************** $in → $out"
 		set -x
-		case $outext in
+		case $format in
 			ogv)
 				# DEFAULTS -c:v libtheora -c:a libvorbis
 				ffmpeg -i "$in" $ffmpeg_params "$out"
@@ -86,13 +87,13 @@ for in in "$@"; do
 				# BTW. afconvert also comes from osx developer tools.
 				afconvert -v $afconvert_params "$in" "$out"
 				;;
-			jpg)
+			jpg-poster)
 				# outputs the first frame of the viddy
 				# mainly useful for making poster images for the web vids
 				ffmpeg -i "$in" -vframes 1 "$out"
 				;;
 			*)
-				echo "don't know what to do with $outext"
+				echo "don't know what to do with $format"
 		esac
 		set +x
 	done
