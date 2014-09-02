@@ -95,7 +95,7 @@ for in in "$@"; do
 			gif-preview)
 				## outputs insane 24 frame 320x preview gif of the video
 				ffmpeg -i "$in" -vframes 24 -vf scale=320:-1 -r 12 "$out"
-			;;
+				;;
 			*)
 				echo "don't know what to do with $format"
 		esac
