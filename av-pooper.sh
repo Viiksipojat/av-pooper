@@ -61,7 +61,7 @@ for in in "$@"; do
 				# http://gpac.wp.mines-telecom.fr/mp4box/#cont_deli
 				# http://superuser.com/questions/438390/creatingmp4-videos-ready-forhttp-streaming
 				# https://trac.ffmpeg.org/wiki/Encode/H.264#AppleQuicktime
-				ffmpeg -i "$in" $ffmpeg_params ${X264Q:+-crf} $X264Q -movflags faststart -pix_fmt yuv420p "$out"
+				ffmpeg -i "$in" $ffmpeg_params ${X264Q:+-crf} $X264Q -movflags +faststart -pix_fmt yuv420p "$out"
 				;;
 			# TESTING COLOR SPACE / PROFILE / MATRIX ??!?
 			mp4-bt709)
@@ -80,8 +80,10 @@ for in in "$@"; do
 				lame $lame_params "$in" "$out"
 				;;
 			m4a)
-				faac $faac_params -o "$out" "$in" \
-				|| ffmpeg -i "$in" $ffmpeg_params "$out"
+				ffmpeg -i "$in" $ffmpeg_params -movflags +faststart "$out"
+				;;
+			m4a-faac)
+				faac $faac_params -o "$out" "$in"
 				;;
 			m4a-afconvert)
 				# BTW. afconvert also comes from osx developer tools.
